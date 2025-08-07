@@ -462,7 +462,7 @@
     <!-- Hero Section -->
     <section class="hero">
         <h1>GitHub Student Developer Pack</h1>
-        <p>Get free access to the best developer tools in one place. Learn to ship software like a pro.</p>
+        <p>Get free access to the best developer tools in one place. Learn to ship software like a pro.<br><span style="font-size:1.5rem;">🚀✨</span></p>
         <a href="https://education.github.com/pack" class="cta-button" target="_blank">Get Your Pack</a>
     </section>
 
@@ -498,20 +498,13 @@
             <div class="source-info">
                 <strong>Source:</strong> <a href="https://education.github.com/pack" target="_blank">GitHub Student Developer Pack</a> &mdash; Official GitHub Education site. Additional context from partner sites and community feedback.
             </div>
-            <div class="benefit-search-sort">
-                <input type="text" id="benefitSearch" placeholder="Search benefits..." />
-                <select id="benefitSort">
-                    <option value="name">Sort by Name</option>
-                    <option value="category">Sort by Category</option>
-                </select>
-            </div>
             <div class="filter-tabs">
-                <div class="filter-tab active" data-category="all">All Benefits</div>
-                <div class="filter-tab" data-category="development">Development</div>
-                <div class="filter-tab" data-category="cloud">Cloud & Hosting</div>
-                <div class="filter-tab" data-category="design">Design</div>
-                <div class="filter-tab" data-category="learning">Learning</div>
-                <div class="filter-tab" data-category="productivity">Productivity</div>
+                <div class="filter-tab active" data-category="all">All Benefits 🎁</div>
+                <div class="filter-tab" data-category="development">Development 💻</div>
+                <div class="filter-tab" data-category="cloud">Cloud & Hosting ☁️</div>
+                <div class="filter-tab" data-category="design">Design 🎨</div>
+                <div class="filter-tab" data-category="learning">Learning 📚</div>
+                <div class="filter-tab" data-category="productivity">Productivity ⚡</div>
             </div>
             <div class="benefits-grid" id="benefitsGrid">
                 <!-- Benefits will be populated by JavaScript -->
@@ -531,13 +524,28 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <p>&copy; 2024 GitHub Student Developer Pack. Visit <a href="https://education.github.com/pack" target="_blank" style="color: var(--accent);">education.github.com/pack</a> to apply.</p>
+        <p style="font-size:1.1rem;">Made with <span style="color:#ffb347;">❤️</span> by <strong>Noah</strong>. Not affiliated with GitHub.<br>For the official pack, visit <a href="https://education.github.com/pack" target="_blank" style="color: var(--accent);">education.github.com/pack</a>.</p>
     </footer>
 
     <script>
         // Benefits data
         const benefits = [
-            // ...existing benefits...
+            { title: "GitHub Pro", category: "development", description: "Unlimited private repositories, advanced tools, and insights for your projects.", value: "Free while you're a student", details: "Get unlimited private repositories, advanced code review tools, GitHub Pages, GitHub Actions minutes, and priority support. Perfect for building your portfolio and collaborating on projects." },
+            { title: "DigitalOcean", category: "cloud", description: "Cloud computing platform with $200 in platform credit.", value: "$200 credit", details: "Get $200 in DigitalOcean credits to deploy and scale your applications. Build, test, and deploy using droplets, managed databases, and kubernetes clusters." },
+            { title: "Heroku", category: "cloud", description: "Cloud platform for deploying applications with free dyno hours.", value: "Free dyno credits", details: "Deploy your applications to the cloud with Heroku's platform-as-a-service. Get free dyno hours to host your web applications and APIs." },
+            { title: "Canva Pro", category: "design", description: "Professional design tools for creating graphics, presentations, and more.", value: "Free Pro account", details: "Access premium templates, photos, graphics, and design tools. Create professional presentations, social media graphics, and marketing materials." },
+            { title: "Figma Pro", category: "design", description: "Collaborative interface design tool with advanced features.", value: "Free Pro features", details: "Design and prototype user interfaces with unlimited projects, version history, and team collaboration features." },
+            { title: "JetBrains IDEs", category: "development", description: "Professional development environments for multiple programming languages.", value: "Free license", details: "Access to all JetBrains IDEs including IntelliJ IDEA, PyCharm, WebStorm, and more. Get advanced debugging, testing, and refactoring tools." },
+            { title: "MongoDB Atlas", category: "development", description: "Cloud database service with $200 in credits.", value: "$200 in credits", details: "Build applications with MongoDB's cloud database. Get credits for hosting your databases with automatic scaling and backup features." },
+            { title: "Notion Pro", category: "productivity", description: "All-in-one workspace for notes, tasks, and collaboration.", value: "Free Pro plan", details: "Organize your projects, take notes, and collaborate with teams using Notion's flexible workspace. Get unlimited blocks and file uploads." },
+            { title: "Adobe Creative Cloud", category: "design", description: "Complete suite of creative applications for design and video.", value: "60% discount", details: "Get access to Photoshop, Illustrator, Premiere Pro, After Effects, and the entire Creative Cloud suite at a significant discount." },
+            { title: "Microsoft Azure", category: "cloud", description: "Cloud computing services with $100 in free credits.", value: "$100 credit", details: "Build, deploy, and manage applications through Microsoft's cloud platform. Get credits for virtual machines, storage, and AI services." },
+            { title: "Name.com", category: "development", description: "Domain registration and DNS management services.", value: "Free domain", details: "Register a free .me domain for your personal projects and get access to DNS management tools and email forwarding." },
+            { title: "DataCamp", category: "learning", description: "Online learning platform for data science and analytics.", value: "Free access", details: "Learn data science, machine learning, and analytics with interactive courses in Python, R, SQL, and more." },
+            { title: "Frontend Masters", category: "learning", description: "Advanced web development courses and workshops.", value: "Free 6-month access", details: "Access expert-led courses on JavaScript, React, Vue, Node.js, and other modern web technologies." },
+            { title: "Bootstrap Studio", category: "development", description: "Visual web design tool for creating responsive websites.", value: "Free license", details: "Design responsive websites visually with drag-and-drop components and real-time preview. Export clean, semantic HTML/CSS code." },
+            { title: "GitKraken", category: "development", description: "Git GUI client with advanced features for version control.", value: "Free Pro account", details: "Visualize your Git repositories with an intuitive interface, merge conflict resolution, and team collaboration features." },
+            { title: "Stripe", category: "development", description: "Payment processing platform for online businesses.", value: "No fees on first $1,000", details: "Accept payments in your applications with Stripe's APIs. Get fee waivers on your first $1,000 in processed payments." }
         ];
 
         // State for search/sort/filter
@@ -564,13 +572,13 @@
                 card.setAttribute('aria-label', benefit.title + ' details');
                 card.style.animationDelay = `${index * 0.07}s`;
                 card.innerHTML = `
-                    <div class="card-header">
-                        <h3 class="card-title">${benefit.title}</h3>
-                        <span class="card-category">${benefit.category}</span>
+                    <div class="card-header" style="background: linear-gradient(90deg, var(--accent) 0%, #58a6ff 100%); color: #fff; font-family: 'Comic Sans MS', 'Comic Sans', cursive; letter-spacing: 1px;">
+                        <h3 class="card-title" style="font-size:1.3rem;">${benefit.title}</h3>
+                        <span class="card-category" style="background: #fff; color: var(--accent); font-weight: bold;">${benefit.category}</span>
                     </div>
-                    <div class="card-body">
-                        <p class="card-description">${benefit.description}</p>
-                        <div class="card-value">${benefit.value}</div>
+                    <div class="card-body" style="background:rgba(255,255,255,0.03);">
+                        <p class="card-description" style="font-size:1.05rem;">${benefit.description}</p>
+                        <div class="card-value" style="font-style:italic; font-size:1.1rem; color:#ffb347;">${benefit.value}</div>
                     </div>
                 `;
                 card.addEventListener('click', () => openModal(benefit));
