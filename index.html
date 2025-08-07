@@ -1,87 +1,703 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>GitHub Education Pack</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #0d1117;
-      color: #c9d1d9;
-      margin: 0;
-      padding: 2rem;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Student Developer Pack</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    h1 {
-      color: #58a6ff;
-      text-align: center;
-    }
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-tertiary: #21262d;
+            --text-primary: #f0f6fc;
+            --text-secondary: #8b949e;
+            --accent: #238636;
+            --accent-hover: #2ea043;
+            --border: #30363d;
+            --shadow: rgba(0, 0, 0, 0.3);
+        }
 
-    .container {
-      max-width: 800px;
-      margin: auto;
-      background: #161b22;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 0 12px rgba(0,0,0,0.5);
-    }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-    h2 {
-      color: #79c0ff;
-    }
+        /* Header */
+        .header {
+            background: var(--bg-secondary);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
+        }
 
-    ul {
-      list-style-type: disc;
-      padding-left: 1.5rem;
-    }
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    a {
-      color: #58a6ff;
-      text-decoration: none;
-    }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
 
-    a:hover {
-      text-decoration: underline;
-    }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
 
-    footer {
-      text-align: center;
-      margin-top: 2rem;
-      font-size: 0.9rem;
-      color: #8b949e;
-    }
-  </style>
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 1rem;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent) 0%, #58a6ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .cta-button:hover {
+            background: var(--accent-hover);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Requirements Section */
+        .requirements {
+            padding: 4rem 0;
+            background: var(--bg-secondary);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            font-weight: 600;
+        }
+
+        .req-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .req-card {
+            background: var(--bg-tertiary);
+            padding: 2rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--border);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .req-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px var(--shadow);
+        }
+
+        .req-card h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        /* Benefits Gallery */
+        .benefits {
+            padding: 4rem 0;
+        }
+
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-tab {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            padding: 0.5rem 1.5rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-tab.active,
+        .filter-tab:hover {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .benefit-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+            animation: slideUp 0.5s ease-out;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-4px) scale(1.03) rotateZ(-1deg);
+            box-shadow: 0 8px 32px var(--shadow);
+            border-color: var(--accent);
+            z-index: 2;
+        }
+
+        .benefit-card.hidden {
+            display: none;
+        }
+
+        .card-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            flex: 1;
+        }
+
+        .card-category {
+            background: var(--accent);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            display: inline-block;
+            margin-left: auto;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-description {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .card-value {
+            font-weight: 600;
+            color: var(--accent);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        /* Attribution and interactivity */
+        .source-info {
+            background: var(--bg-tertiary);
+            border-left: 4px solid var(--accent);
+            padding: 1rem;
+            margin: 2rem 0;
+            border-radius: 0 0.5rem 0.5rem 0;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+        .source-info a {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+        .benefit-search-sort {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+        .benefit-search-sort input[type="text"] {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            outline: none;
+            min-width: 200px;
+        }
+        .benefit-search-sort select {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            outline: none;
+        }
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            animation: fadeIn 0.3s;
+        }
+
+        .modal-content {
+            background: var(--bg-secondary);
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            border: 1px solid var(--border);
+        }
+
+        .close {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: color 0.3s;
+        }
+
+        .close:hover {
+            color: var(--text-primary);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-secondary);
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 2rem 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .requirements,
+            .benefits {
+                padding: 2rem 0;
+            }
+
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+
+            .req-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .req-card {
+                padding: 1.5rem;
+            }
+
+            .filter-tabs {
+                gap: 0.5rem;
+                margin-bottom: 2rem;
+            }
+
+            .filter-tab {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .modal-content {
+                margin: 10% 1rem;
+                padding: 1.5rem;
+                max-height: 70vh;
+            }
+
+            .card-header,
+            .card-body {
+                padding: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .cta-button {
+                padding: 0.5rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .benefit-card {
+            animation: slideUp 0.5s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h1>GitHub Student Developer Pack</h1>
-    
-    <h2>🎁 What's Included</h2>
-    <p>The GitHub Education Pack gives you free access to premium developer tools, including:</p>
-    <ul>
-      <li><strong>GitHub Pro</strong> – private repos, advanced features</li>
-      <li><strong>DigitalOcean</strong> – $200 in cloud credits</li>
-      <li><strong>Namecheap</strong> – free domain name and SSL</li>
-      <li><strong>JetBrains</strong> – free access to all IDEs</li>
-      <li><strong>Educative</strong> – free courses to level up your dev skills</li>
-      <li><strong>Canva</strong> – Pro access for graphic design</li>
-      <li><strong>Frontend Masters</strong> – free 6-month subscription</li>
-    </ul>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <a href="#" class="logo">GitHub Student Pack</a>
+            <ul class="nav-links">
+                <li><a href="#requirements">Requirements</a></li>
+                <li><a href="#benefits">Benefits</a></li>
+                <li><a href="https://education.github.com/pack" target="_blank">Apply Now</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <h2>✅ Requirements</h2>
-    <ul>
-      <li>Be currently enrolled in a degree or diploma-granting course</li>
-      <li>Have a school-issued email address (e.g. <code>@university.edu</code>) or upload student ID</li>
-      <li>Have a GitHub account</li>
-    </ul>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>GitHub Student Developer Pack</h1>
+        <p>Get free access to the best developer tools in one place. Learn to ship software like a pro.</p>
+        <a href="https://education.github.com/pack" class="cta-button" target="_blank">Get Your Pack</a>
+    </section>
 
-    <h2>📎 Apply Now</h2>
-    <p>Head over to <a href="https://education.github.com/pack" target="_blank">GitHub Education</a> to apply.</p>
-  </div>
+    <!-- Requirements Section -->
+    <section class="requirements" id="requirements">
+        <div class="container">
+            <h2 class="section-title">Eligibility Requirements</h2>
+            <div class="req-grid">
+                <div class="req-card">
+                    <h3>📚 Student Status</h3>
+                    <p>Be enrolled in a degree or diploma granting course of study at an accredited educational institution.</p>
+                </div>
+                <div class="req-card">
+                    <h3>🎓 Academic Email</h3>
+                    <p>Have a school-issued email address or upload documents that prove your current student status.</p>
+                </div>
+                <div class="req-card">
+                    <h3>🆔 Verification</h3>
+                    <p>Be at least 13 years old and provide valid academic documentation for verification.</p>
+                </div>
+                <div class="req-card">
+                    <h3>🌍 Global Access</h3>
+                    <p>Available to students worldwide at qualifying educational institutions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <footer>
-    Built by Noah · Not affiliated with GitHub
-  </footer>
+    <!-- Benefits Section -->
+    <section class="benefits" id="benefits">
+        <div class="container">
+            <h2 class="section-title">Student Benefits Gallery</h2>
+            <div class="source-info">
+                <strong>Source:</strong> <a href="https://education.github.com/pack" target="_blank">GitHub Student Developer Pack</a> &mdash; Official GitHub Education site. Additional context from partner sites and community feedback.
+            </div>
+            <div class="benefit-search-sort">
+                <input type="text" id="benefitSearch" placeholder="Search benefits..." />
+                <select id="benefitSort">
+                    <option value="name">Sort by Name</option>
+                    <option value="category">Sort by Category</option>
+                </select>
+            </div>
+            <div class="filter-tabs">
+                <div class="filter-tab active" data-category="all">All Benefits</div>
+                <div class="filter-tab" data-category="development">Development</div>
+                <div class="filter-tab" data-category="cloud">Cloud & Hosting</div>
+                <div class="filter-tab" data-category="design">Design</div>
+                <div class="filter-tab" data-category="learning">Learning</div>
+                <div class="filter-tab" data-category="productivity">Productivity</div>
+            </div>
+            <div class="benefits-grid" id="benefitsGrid">
+                <!-- Benefits will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalBody">
+                <!-- Modal content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 GitHub Student Developer Pack. Visit <a href="https://education.github.com/pack" target="_blank" style="color: var(--accent);">education.github.com/pack</a> to apply.</p>
+    </footer>
+
+    <script>
+        // Benefits data
+        const benefits = [
+            // ...existing benefits...
+        ];
+
+        // State for search/sort/filter
+        let filteredBenefits = [...benefits];
+        let currentCategory = 'all';
+
+        // DOM elements
+        const benefitsGrid = document.getElementById('benefitsGrid');
+        const filterTabs = document.querySelectorAll('.filter-tab');
+        const modal = document.getElementById('modal');
+        const modalBody = document.getElementById('modalBody');
+        const closeModal = document.querySelector('.close');
+        const benefitSearch = document.getElementById('benefitSearch');
+        const benefitSort = document.getElementById('benefitSort');
+
+        // Render benefits with keyboard navigation and animated hover
+        function renderBenefits(list = filteredBenefits) {
+            benefitsGrid.innerHTML = '';
+            list.forEach((benefit, index) => {
+                const card = document.createElement('div');
+                card.className = 'benefit-card';
+                card.tabIndex = 0;
+                card.setAttribute('role', 'button');
+                card.setAttribute('aria-label', benefit.title + ' details');
+                card.style.animationDelay = `${index * 0.07}s`;
+                card.innerHTML = `
+                    <div class="card-header">
+                        <h3 class="card-title">${benefit.title}</h3>
+                        <span class="card-category">${benefit.category}</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">${benefit.description}</p>
+                        <div class="card-value">${benefit.value}</div>
+                    </div>
+                `;
+                card.addEventListener('click', () => openModal(benefit));
+                card.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        openModal(benefit);
+                    }
+                });
+                // Animated hover effect
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    card.style.setProperty('--mouse-x', `${x}px`);
+                    card.style.setProperty('--mouse-y', `${y}px`);
+                });
+                benefitsGrid.appendChild(card);
+            });
+        }
+
+        // Filter benefits by category
+        function filterBenefits(category) {
+            currentCategory = category;
+            if (category === 'all') {
+                filteredBenefits = [...benefits];
+            } else {
+                filteredBenefits = benefits.filter(b => b.category === category);
+            }
+            applySearchAndSort();
+        }
+
+        // Search and sort
+        function applySearchAndSort() {
+            let list = [...filteredBenefits];
+            const query = benefitSearch.value.trim().toLowerCase();
+            if (query) {
+                list = list.filter(b => b.title.toLowerCase().includes(query) || b.description.toLowerCase().includes(query));
+            }
+            if (benefitSort.value === 'name') {
+                list.sort((a, b) => a.title.localeCompare(b.title));
+            } else if (benefitSort.value === 'category') {
+                list.sort((a, b) => a.category.localeCompare(b.category));
+            }
+            renderBenefits(list);
+        }
+
+        // Modal
+        function openModal(benefit) {
+            modalBody.innerHTML = `
+                <h2>${benefit.title}</h2>
+                <span class="card-category" style="margin-bottom: 1rem; display: inline-block;">${benefit.category}</span>
+                <p style="margin-bottom: 1rem; color: var(--text-secondary);">${benefit.description}</p>
+                <div style="margin-bottom: 1rem;">
+                    <strong style="color: var(--accent);">Value: ${benefit.value}</strong>
+                </div>
+                <p>${benefit.details}</p>
+                <div style="margin-top: 2rem;">
+                    <a href="https://education.github.com/pack" target="_blank" class="cta-button">Get This Benefit</a>
+                </div>
+            `;
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModalFunc() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Spotlight: Show a random benefit at the top every load
+        function showRandomSpotlight() {
+            if (!benefits.length) return;
+            const spotlight = benefits[Math.floor(Math.random() * benefits.length)];
+            const container = document.createElement('div');
+            container.className = 'benefit-card';
+            container.style.marginBottom = '2rem';
+            container.style.background = 'linear-gradient(90deg, var(--accent), var(--bg-secondary))';
+            container.innerHTML = `
+                <div class="card-header">
+                    <h3 class="card-title">🌟 Spotlight: ${spotlight.title}</h3>
+                    <span class="card-category">${spotlight.category}</span>
+                </div>
+                <div class="card-body">
+                    <p class="card-description">${spotlight.description}</p>
+                    <div class="card-value">${spotlight.value}</div>
+                </div>
+            `;
+            container.addEventListener('click', () => openModal(spotlight));
+            const grid = document.getElementById('benefitsGrid');
+            grid.parentNode.insertBefore(container, grid);
+        }
+
+        // Event listeners
+        filterTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                filterTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                filterBenefits(tab.dataset.category);
+            });
+        });
+        closeModal.addEventListener('click', closeModalFunc);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModalFunc();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModalFunc();
+        });
+        benefitSearch.addEventListener('input', applySearchAndSort);
+        benefitSort.addEventListener('change', applySearchAndSort);
+
+        // Initialize
+        renderBenefits();
+        showRandomSpotlight();
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
